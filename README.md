@@ -1,50 +1,87 @@
-## 🛠️ Tech Stack
+# KCET Flash (Full-Stack)
 
-- **Frontend:** React 18 + TypeScript
-- **Styling:** Tailwind CSS (mobile-first)
-- **Animations:** Framer Motion
-- **Architecture:** Progressive Web App (PWA)
+Production-oriented full-stack KCET prep platform.
 
----
+## Architecture
 
-## 📱 PWA Features
+- **Frontend:** React + Vite + TypeScript (`/src`)
+- **Backend:** Node.js + Express + TypeScript (`/backend`)
+- **Database:** Firebase Firestore (`users`, `subjects`, `formulas`, `questions`, `progress`)
+- **Auth:** JWT + email/password + Google OAuth + optional 2FA
 
-- Installable via "Add to Home Screen"
-- Fully functional **offline**
-- Cached assets using Service Worker
-- Fast loading and native-app-like experience
+## Frontend folder layout
 
----
-
-## 📂 Project Structure
-
-
+```text
 src/
-│── components/ # UI components
-│── pages/ # Main views/screens
-│── data/ # Question bank (data.ts)
-│── hooks/ # Custom React hooks
-│── utils/ # Helper functions
-│── assets/ # Icons and images
-│── sw.js # Service worker
+  components/
+  pages/
+  services/
+  hooks/
+  utils/
+  types/
+  context/
+```
 
+## Backend folder layout
 
----
+```text
+backend/src/
+  controllers/
+  routes/
+  middlewares/
+  services/
+  models/
+  utils/
+```
 
-## 💡 Use Cases
+## API Endpoints
 
-- 📍 Revision during commute (offline mode)
-- 🎯 Identify weak chapters quickly
-- 📖 Instant formula reference
-- ⏱️ Practice time-based question solving
-- 🔥 Short, gamified study sessions
+- `POST /auth/login`
+- `POST /auth/register`
+- `POST /auth/google`
+- `GET /formulas`
+- `GET /subjects`
+- `GET /questions`
+- `POST /progress`
+- `GET /progress`
 
----
+## Dynamic routes
 
-## ⚙️ Installation
+- `/subject/:id`
+- `/formula/:id`
+- `/quiz/:id`
+
+## Environment variables
+
+### Frontend (`.env`)
+
+- `VITE_API_BASE_URL`
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_APP_ID`
+
+### Backend (`backend/.env`)
+
+- `PORT`
+- `JWT_SECRET`
+- `GOOGLE_CLIENT_ID`
+- `CORS_ORIGIN`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_CLIENT_EMAIL`
+- `FIREBASE_PRIVATE_KEY`
+
+## Local development
 
 ```bash
-git clone https://github.com/your-username/kcet-flash.git
-cd kcet-flash
 npm install
+npm --prefix backend install
 npm run dev
+npm run backend:dev
+```
+
+## Deployment
+
+- Frontend: Vercel
+- Backend: Render
+- Database: Firebase Firestore
